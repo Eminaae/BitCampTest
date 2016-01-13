@@ -1,0 +1,30 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /                        @controllers.Application.index()
+
+GET         /tasks/                  @controllers.TaskController.viewTasks()
+GET         /tasks/new               @controllers.TaskController.newTask()
+GET         /tasks/:id               @controllers.TaskController.search(id: Long)
+GET         /task/details/:id        @controllers.TaskController.editTask(id: Long)
+
+POST        /tasks/                  @controllers.TaskController.saveTask()
+POST        /task/details/:id        @controllers.TaskController.updateTask(id: Long)
+
+GET         /task/delete/:id         @controllers.TaskController.deleteTask(id: Long)
+POST        /task/delete/:id         @controllers.TaskController.deleteTask(id: Long)
+
+
+#GET           /category/task/:id           @controllers.CategoryController.categoryTask(id: Long)
+GET           /category/new/            @controllers.CategoryController.newCategory()
+POST          /category/save/:id           @controllers.CategoryController.saveCategory(id: Long)
+GET           /category/:id                @controllers.CategoryController.editCategory(id: Long)
+POST          /category/:id                @controllers.CategoryController.updateCategory(id: Long)
+GET           /category/delete/:id         @controllers.CategoryController.deleteCategory(id: Long)
+
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file            controllers.Assets.versioned(path="/public", file: Asset)

@@ -1,0 +1,45 @@
+@import helper._
+
+@(categoryForm: Form[Category], task: Task)
+@main("New Category"){
+
+  <div class="col-md-12" style="background-color: #F4F4F4">
+    <div class = "row" style="margin-right: 0px;">
+      <div class = "col-md-6">
+        <h2>Add category</h2>
+      </div>
+    </div>
+
+    <form id="new-category-form" method="POST" action="@(routes.CategoryController.saveCategory(task.getId))">
+      <div class = "row newCategory">
+
+        <div class="col-md-6">
+          @for((key, value) <- categoryForm.errors) {
+            @for(err <- value) {
+              <span class="alert-danger" style="font-weight : normal ; display : block ; width : 90 % ;">@err.message</span>
+            }
+          }
+          <input type="hidden" class="form-control" name="parentName" value="null">
+          <label> Category name: </label>
+          <div id="category-div">
+            <input type="text" class="form-control" id="exampleInputEmail1" name="name">
+            <span class="alert-danger" data-error-for="name" style = "font-weight:normal;"></span>
+          </div>
+        </div>
+      </div>
+        <!--Buttons-->
+      <div class ="col-md-1">
+        <button id="submit-button" class="btn btn-primary" type="submit" name="save"> Save </button>
+      </div>
+    </form>
+
+    <div class ="row newCategory">
+      <div class="col-md-1">
+        <a href="@routes.Application.index()"><button type="submit" class="btn btn-default">
+          Cancel</button></a>
+      </div>
+    </div>
+  </div>
+
+
+}

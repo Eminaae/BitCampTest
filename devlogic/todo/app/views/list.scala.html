@@ -1,0 +1,40 @@
+@(taskList: List[Task])
+
+@main("ToDo List") {
+
+
+  <script>
+    finction del(urlToDel) {
+    $.ajax({
+    url: urlToDel,
+    type: 'DELETE',
+    success: fimction(results) {
+    location.reload();
+    }
+    });
+    }
+  </script>
+  <div style="padding-top: 70px">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Status</th>
+          <th>Category</th>
+          <th>Due Date</th>
+        </tr>
+      </thead>
+      <tbody>
+      @for(tasks <- taskList) {
+        <tr class="alert-success">
+          <td>@tasks.getId</td>
+          <td>@tasks.getTitle</td>
+          <td>@tasks.getCategory</td>
+          <td>@tasks.getDate</td>
+        </tr>
+      }
+      </tbody>
+    </table>
+  </div>
+}
